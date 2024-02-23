@@ -1524,12 +1524,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e79e83168e7c445b7aa922906b2d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartButtonLeft: {fileID: 0}
-  gameOverPanel: {fileID: 0}
-  victoryPanel: {fileID: 0}
-  restartButton: {fileID: 0}
-  victoryButton: {fileID: 0}
-  characterTransform: {fileID: 0}
+  restartButtonLeft: {fileID: 416906082}
+  gameOverPanel: {fileID: 2071684196}
+  victoryPanel: {fileID: 400390638}
+  restartButton: {fileID: 841626963}
+  victoryButton: {fileID: 1636942496}
+  characterTransform: {fileID: 1380942475}
   rayLength: 1
   detectLayer:
     serializedVersion: 2
@@ -3355,7 +3355,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.61, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3372,7 +3372,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 1380942475}
-  offset: {x: 5, y: 0, z: -10}
+  followThreshold: 0.33
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &522554615
 GameObject:
   m_ObjectHideFlags: 0
@@ -5943,6 +5944,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!1 &1220140173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1220140175}
+  - component: {fileID: 1220140174}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1220140174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220140173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de175c867edf4734dbb2b27067ea7bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1380942471}
+  cameraTarget: {fileID: 1090492836}
+  cameraMoveSpeed: 40
+  cameraFollowScript: {fileID: 519420033}
+  targetOrthographicSize: 25
+--- !u!4 &1220140175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220140173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.990942, y: 13.941559, z: -0.18760136}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1239083649
 GameObject:
   m_ObjectHideFlags: 0
@@ -9619,3 +9669,4 @@ SceneRoots:
   - {fileID: 1753304285}
   - {fileID: 2020241870}
   - {fileID: 1163861957}
+  - {fileID: 1220140175}
