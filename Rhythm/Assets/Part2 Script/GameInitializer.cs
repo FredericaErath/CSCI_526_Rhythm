@@ -7,13 +7,13 @@ public class GameInitializer : MonoBehaviour
     public float cameraMoveSpeed = 20.0f; // 相机移动的速度
     private Vector3 initialCameraPosition; // 相机的初始位置
     public CameraFollow cameraFollowScript; // 引用 CameraFollow 脚本
-
+    public GameObject beatBar;
     public float targetOrthographicSize = 25f; // 目标正交大小
     private float initialOrthographicSize; // 初始正交大小
     void Start()
     {
         initialOrthographicSize = Camera.main.orthographicSize;
-
+        beatBar.SetActive(false);
         initialCameraPosition = Camera.main.transform.position;
         // 暂时禁用 CameraFollow 脚本
         Time.timeScale = 0f;
@@ -72,6 +72,7 @@ public class GameInitializer : MonoBehaviour
         // 恢复游戏时间
         Debug.Log("Game Resumed");
         Time.timeScale = 1f;
+        beatBar.SetActive(true);
         Camera.main.orthographicSize = initialOrthographicSize;
 
         // 启用 CameraFollow 脚本
