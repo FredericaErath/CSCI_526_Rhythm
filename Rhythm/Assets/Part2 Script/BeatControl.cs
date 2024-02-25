@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BeatControl : MonoBehaviour
 {
     public GameObject circle;
+    public TextMeshProUGUI scoreText;
+    public bool updateScore = false;
     private float perfect = 0.5f;
     private float good = 1.0f;
     private float pass = 1.5f;
+    private ScoreController sc;
     // Start is called before the first frame update
+
     void Start()
     {
-        
+        sc = scoreText.GetComponent<ScoreController>();
     }
     float GetAbs(float tar) 
     {
@@ -21,10 +26,22 @@ public class BeatControl : MonoBehaviour
 
     int GetStatus(float distance)
     {
-        if (distance <= perfect) return 0;
-        else if (distance <= good) return 1;
-        else if (distance <= pass) return 2;
-        else return 3;
+        if (distance <= perfect) {
+            if (updateScore) sc.score += 100;
+            return 0;
+        }
+        else if (distance <= good) {
+            if (updateScore) sc.score += 30;
+            return 1;
+        }
+        else if (distance <= pass) {
+            if (updateScore) sc.score += 10;
+            return 2;
+        }
+        else {
+            if (updateScore) sc.score -= 30;
+            return 3;
+        }
     }
 
     // Update is called once per frame
@@ -37,16 +54,15 @@ public class BeatControl : MonoBehaviour
             Debug.Log("Jump: " + status);
             if (status < 3) gameObject.SetActive(false);
         } else if (gameObject.CompareTag("Long") && Input.GetButtonDown("Fire1")){
-            distance = GetAbs(transform.position.x - transform.localScale.x - circle.transform.position.x);
-            Debug.Log("Begin shrink: " + GetStatus(distance));
-        } else if (gameObject.CompareTag("Long") && Input.GetButtonUp("Fire1")) {
-            distance = GetAbs(transform.position.x + transform.localScale.x - circle.transform.position.x);
+            distance = GetAbs(transform.position.x - (transform.localScale.x / 2) - circle.transform.position.x);
             int status = GetStatus(distance);
-            Debug.Log("After shrink: " + GetStatus(distance));
+            Debug.Log("Begin shrink: " + status);
+        } else if (gameObject.CompareTag("Long") && Input.GetButtonUp("Fire1")) {
+            distance = GetAbs(transform.position.x + (transform.localScale.x / 2) - circle.transform.position.x);
+            int status = GetStatus(distance);
+            Debug.Log("After shrink: " + status);
             if (status < 3) gameObject.SetActive(false);
         }
-
-        
         
     }
 }

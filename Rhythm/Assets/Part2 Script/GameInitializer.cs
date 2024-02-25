@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class GameInitializer : MonoBehaviour
 {
@@ -8,12 +9,14 @@ public class GameInitializer : MonoBehaviour
     private Vector3 initialCameraPosition; // 相机的初始位置
     public CameraFollow cameraFollowScript; // 引用 CameraFollow 脚本
     public GameObject beatBar;
+    public TextMeshProUGUI scoreText;
     public float targetOrthographicSize = 25f; // 目标正交大小
     private float initialOrthographicSize; // 初始正交大小
     void Start()
     {
         initialOrthographicSize = Camera.main.orthographicSize;
         beatBar.SetActive(false);
+        scoreText.enabled = false;
         initialCameraPosition = Camera.main.transform.position;
         // 暂时禁用 CameraFollow 脚本
         Time.timeScale = 0f;
@@ -73,6 +76,7 @@ public class GameInitializer : MonoBehaviour
         Debug.Log("Game Resumed");
         Time.timeScale = 1f;
         beatBar.SetActive(true);
+        scoreText.enabled = true;
         Camera.main.orthographicSize = initialOrthographicSize;
 
         // 启用 CameraFollow 脚本
